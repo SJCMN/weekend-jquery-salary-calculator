@@ -1,0 +1,26 @@
+h1 {
+    background-color: #343a40;
+    text-align: center;
+    padding: 30px;
+    color: #f8f9fa;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    padding: 20px;
+}
+
+.red {
+    background-color: #dc3545;
+    color: #f8f9fa;
+    border-radius: 6px;
+    padding: 6px;
+    
+}
+
+.form {
+    padding-bottom: 20px;
+}
