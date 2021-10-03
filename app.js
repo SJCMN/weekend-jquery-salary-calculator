@@ -155,18 +155,30 @@ function deleteSalary() {
 
     // removes first 4 numbers of remaining number string
     // removes employee id from salary string
-    // calculates monthly budget of removed salary
-    deletedSalary = deletedSalary.slice(4)/12
 
-    console.log(deletedSalary);
+    // subtract deleted salary from salaryTotal
+    console.log('this is the deleted salary: ', deletedSalary.slice(4));
+    salaryTotal -= (deletedSalary.slice(4));
+
+    // calculates monthly budget of removed salary
+    deletedSalary = deletedSalary.slice(4)/12;
+        
+    console.log('removed salary/12:', deletedSalary);
     // call to add result to DOM
     appendRemaining(deletedSalary)
 }
 
 
 function appendRemaining(salary){
+    // calc monthly salary budget
+    let salaryMonthly = salaryTotal/12
+    console.log('salary Monthly:', salaryMonthly);
 
-    console.log('appendRemaining');
+    let newMonthlySalary = salaryMonthly - salary
+    console.log('new monthly salary', newMonthlySalary);
+    
+    // append dom with formatted salary number
+    $( '#salaryTotal' ).text(formatCurrency(newMonthlySalary))
     
 }
 
