@@ -5,6 +5,9 @@ $(readyNow);
 
 // declarations
 
+let salaryTotal = 0
+const cap = 40000
+
 const employees = [
 
     {
@@ -35,7 +38,6 @@ const employees = [
         employeeTitle: 'Account Director',
         annualSalary: 139000,
     }
-
 
 ]
 
@@ -117,35 +119,54 @@ function renderEmployee () {
 
 // render salary budget to dom
 
+
+
 function addSalaries(){
-    let salaryTotal = 0
+    // total salaries for employees  
     for (let employee of employees){
         salaryTotal += employee.annualSalary
     }
 
-
+    // calc monthly salary budget
     let salaryMonthly = salaryTotal/12
 
-    if ( salaryMonthly >= 40000 ) {
+    // check if monthly salary exceeds cap
+    if ( salaryMonthly >= cap ) {
         $( '#salaryTotal' ).addClass('red') 
     };
 
+    // append dom with formatted salary number
     $( '#salaryTotal' ).text(formatCurrency(salaryMonthly))
 
 }
 
 
 function deleteSalary() {
+
+    // selects parent row of clicked button and removes from DOM
     $( this ).closest('tr').remove()
     
-    console.log(this);
-    
-    removeDeleted(this)
+    // calculates text() found inside row
+    // removes all characters except numbers
+
+    // console.log(this);
+    let deletedRow = $( this ).parent().parent().text();
+    let deletedSalary = deletedRow.replace(/[^\d.-]/g, '')
+
+    // removes first 4 numbers of remaining number string
+    // removes employee id from salary string
+    // calculates monthly budget of removed salary
+    deletedSalary = deletedSalary.slice(4)/12
+
+    console.log(deletedSalary);
+    // call to add result to DOM
+    appendRemaining(deletedSalary)
 }
 
 
-function removeDeleted(){
-    console.log(this);
+function appendRemaining(salary){
+
+    console.log('appendRemaining');
     
 }
 
