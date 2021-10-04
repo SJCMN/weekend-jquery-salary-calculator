@@ -178,6 +178,7 @@ function deleteSalary() {
     let deletedRow = $( this ).parent().parent().text();
     deletedSalary = deletedRow.replace(/[^\d.-]/g, '')
 
+    // deleteSalary() only works if 4 digits are used for employee ID
     // removes first 4 numbers of remaining number string
     // removes employee id from salary string
 
