@@ -158,29 +158,24 @@ function deleteSalary() {
 
     // subtract deleted salary from salaryTotal
     console.log('this is the deleted salary: ', deletedSalary.slice(4));
+    console.log('this is the new total salary: ',salaryTotal-deletedSalary.slice(4));
     salaryTotal -= (deletedSalary.slice(4));
+    console.log('this is the new salaryTotal value: ',salaryTotal);
 
-    // calculates monthly budget of removed salary
-    deletedSalary = deletedSalary.slice(4)/12;
-        
-    console.log('removed salary/12:', deletedSalary);
-    // call to add result to DOM
+    deletedSalary = salaryTotal/12
+    console.log('this is the new salaryTotal/12: ',salaryTotal);  
+
     appendRemaining(deletedSalary)
 }
 
 
 function appendRemaining(salary){
-    // calc monthly salary budget
-    let salaryMonthly = salaryTotal/12
-    console.log('salary Monthly:', salaryMonthly);
-
-    let newMonthlySalary = salaryMonthly - salary
-    console.log('new monthly salary', newMonthlySalary);
     
     // append dom with formatted salary number
-    $( '#salaryTotal' ).text(formatCurrency(newMonthlySalary))
+    $( '#salaryTotal' ).text(formatCurrency(salary))
     
 }
+
 
 // returns currency formatted number
 function formatCurrency(number) {
@@ -190,6 +185,7 @@ function formatCurrency(number) {
     maximumFractionDigits: 0,
     }).format(number);
   }
+
 
 // returns currency formatted number
   function numberWithCommas(num) {
