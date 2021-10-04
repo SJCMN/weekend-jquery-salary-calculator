@@ -6,38 +6,39 @@ $(readyNow);
 // declarations
 
 let salaryTotal = 0
+let salaryMonthly = 0
 const cap = 40000
 
 const employees = [
 
-    {
-        firstName: 'Jimmy',
-        lastName: 'Smith',
-        employeeId: '3937',
-        employeeTitle: 'Manager',
-        annualSalary: 99000,
-    },
-    {
-        firstName: 'Eric',
-        lastName: 'Daniels',
-        employeeId: '3938',
-        employeeTitle: 'Supervisor',
-        annualSalary: 89000,
-    },
-    {
-        firstName: 'Spencer',
-        lastName: 'Walker',
-        employeeId: '9328',
-        employeeTitle: 'Director',
-        annualSalary: 129000,
-    },
-    {
-        firstName: 'Matt',
-        lastName: 'Johnson',
-        employeeId: '3892',
-        employeeTitle: 'Account Director',
-        annualSalary: 139000,
-    }
+    // {
+    //     firstName: 'Jimmy',
+    //     lastName: 'Smith',
+    //     employeeId: '3937',
+    //     employeeTitle: 'Manager',
+    //     annualSalary: 99000,
+    // },
+    // {
+    //     firstName: 'Eric',
+    //     lastName: 'Daniels',
+    //     employeeId: '3938',
+    //     employeeTitle: 'Supervisor',
+    //     annualSalary: 89000,
+    // },
+    // {
+    //     firstName: 'Spencer',
+    //     lastName: 'Walker',
+    //     employeeId: '9328',
+    //     employeeTitle: 'Director',
+    //     annualSalary: 129000,
+    // },
+    // {
+    //     firstName: 'Matt',
+    //     lastName: 'Johnson',
+    //     employeeId: '3892',
+    //     employeeTitle: 'Account Director',
+    //     annualSalary: 139000,
+    // }
 
 ]
 
@@ -128,16 +129,22 @@ function addSalaries(){
     }
 
     // calc monthly salary budget
-    let salaryMonthly = salaryTotal/12
+    salaryMonthly = salaryTotal/12
 
-    // check if monthly salary exceeds cap
-    if ( salaryMonthly >= cap ) {
-        $( '#salaryTotal' ).addClass('red') 
-    };
+    salaryCap ()
 
-    // append dom with formatted salary number
-    $( '#salaryTotal' ).text(formatCurrency(salaryMonthly))
+}
 
+function salaryCap () {
+        // check if monthly salary exceeds cap
+        if ( salaryMonthly >= cap ) {
+            $( '#salaryTotal' ).addClass('red') 
+        }; if ( salaryMonthly <= cap ) {
+            $( '#salaryTotal' ).removeClass('red') 
+        }
+    
+        // append dom with formatted salary number
+        $( '#salaryTotal' ).text(formatCurrency(salaryMonthly))
 }
 
 
@@ -163,8 +170,8 @@ function deleteSalary() {
     console.log('this is the new salaryTotal value: ',salaryTotal);
 
     deletedSalary = salaryTotal/12
-    console.log('this is the new salaryTotal/12: ',salaryTotal);  
-
+    console.log('this is the new salaryTotal/12: ',deletedSalary);  
+    salaryCap ()
     appendRemaining(deletedSalary)
 }
 
